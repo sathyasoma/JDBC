@@ -1,0 +1,602 @@
+
+
+MongoDB:
+================>>>>>>>>>>
+
+MangoDB  or MongoDB ????????
+
+MongoDB 
+
+Humongous
+    extreamly large: huge a humangous  building humongos amounts of money
+	
+
+MongoDB is the most populer and trending database.
+
+https://www.mongodb.com/
+
+
+
+Where we can use MongoDB database:
+---------------
+
+we can use everywhere 
+
+for desktop applications, for mobile applications
+
+for web applications, this datatbase is more populer.
+
+
+Full Stack develeper:
+
+stack:---> the technologies which we can be used to develop web applications are called stack.
+
+The most populer stacks:
+
+  1. MEAN Stack:
+  2. MERN Stack:
+  
+  1. MEAN :
+       M==>MongoDB
+	   E==>Express
+	   A=>Angular
+	   N==>Nodejs
+	   
+2. MERN
+
+       M==>MongoDB
+	   E==>Express
+	   R=>React
+	   N==>Nodejs
+
+   
+React or Angular is front end framework
+Express Js is the backend server side framework
+Node js is responsible to provide server side runtime environment
+Mongodb==Database
+
+ 
+ By using MEAN and MERN Stacks we can build javascript based web applications.
+ 
+ Node js is based on javascript 
+ React or ngular js is based on java Script 
+ Express is based on the javascript 
+ MongoDB is also based java script
+ 
+ 
+ MongoDB internally uses Mozilla's Spider Monkey javascript Engine.
+ 
+  Q. what is the type of MongoDB Database.
+      it is Document Database/Nosql databse
+	  
+ Relational Database vs Document Database:
+ =======================================
+  
+ There are two most common types of databases.
+ 
+ 1. Relational Dtabase/sql dtabase
+ 2. Document Database/Nosql dtabase
+ 
+  Relational Dtabase/sql dtabase:
+  ============================
+	The data will be stored in tables and these tables has fixed schema 
+ Employee(eno, ename, esal)
+    The data stored in tables has relationships like 
+        one to one 
+        one to many
+        many to one 
+   etc
+
+
+To retrive data from relational databse, we have to write join queries which .collects data from different tables.
+   eg: oracle,mysql
+   
+   
+2. Document Database/Nosql dtabase:
+-------------------------   
+   
+   Data will be stored in seperate documents and each document is independent of
+others.
+
+eg: MongoDB 
+https://www.trustradius.com/nosql-databases
+
+
+
+
+MongoDB Structure:
+===================
+
+MongoDb physical database contains several logical database.
+  Each dtabase contains several collections. collection is something like table in
+  relational dtabase.
+    Each collection contains several documents. Documents is something like record/ row in relatonal dtabase.
+	
+	eg:
+	--
+	Database: Shopping card databse 
+	collection: customer collection,products, orders
+	Customer collection: contain several documents
+  
+  document1: 
+        {
+		'name':"sunny",
+		"age":40,
+		"salary":1000
+		
+		}
+		document2: 
+        {
+		"name":"sathya"
+		}
+document3: 
+        {
+		"name":"bunny",
+		"age":30
+		"address":{
+		            "city":"hyderabad"
+		          },
+		   "hobbies":[
+		   {""name:"cricket"},{"name":swimming}
+		   ]
+		}
+
+
+How data represented in MongoDB?
+  in json(BSON)format
+  json: java script object notation
+  BSON: binary json 
+  
+  
+  key charecteristics of MongoDB database:
+  ==========================
+ 0. insrallation and setup is ery easy
+ 
+  1. All information related to a document will be stored in a single place.
+To rtrive data, it is not required to perform join operaions and hence
+retrival is very fast.
+
+2.Documents are independent of each other and no schema. hence we can
+ store unstrutured data like vidoes, audio files etc...
+ 
+3. we can perform operations like editing documents, deleteing document and 
+inserting new documents  very easily.
+
+4.Retrival data is in the form of json which can be understandable by any programming language without any conversion,
+
+5. we can store very huge amount of data and hence scalability is more.
+
+Note: performance and flexibilty are biggest assets of this database. 
+ 
+MongoDB-->it is database from mongodb vendor.
+
+mongodb.com
+
+
+
+
+
+MongoDB Shell vs MongoDB Server:
+============================
+
+Once we insatll Mongodb, we will get mongodb shell and mongodb server.
+
+These are javascript beased applications.
+
+MongoDB Server is responsible to store our data in dtabase.
+Mongodb Shell is repsonsible for to manage server.
+
+By using this shell we can performm all required CRUD operations
+
+MongoDB  server can be either local or remote.
+
+To Launch/start MongoDB Server --> mongod    command 
+To Luunch/start MongoDB Shell   --->mongo    command
+
+Gui Support is also thee for MongoDB sHELL===>
+
+   compass
+   Robo T3
+   etc 
+   
+
+MongoDb Drivers:
+---------------
+From Application(java,python,c# etc) if we want to communicate with database, some special software must be required, which is nothing but driver software.
+
+https://mongodb.github.io/mongo-java-driver/4.6/driver-reactive/tutorials/
+
+
+
+what is the diff between Oracl DB and Mango DB:
+=======================================
+
+MangoDb installation:
+==================
+https://www.mongodb.com/try/download/community
+
+
+
+C:\Program Files\MongoDB\Server\5.0\bin>mongod -version
+db version v5.0.8
+Build Info: {
+    "version": "5.0.8",
+    "gitVersion": "c87e1c23421bf79614baf500fda6622bd90f674e",
+    "modules": [],
+    "allocator": "tcmalloc",
+    "environment": {
+        "distmod": "windows",
+        "distarch": "x86_64",
+        "target_arch": "x86_64"
+    }
+}
+
+
+
+==>
+C:\Program Files\MongoDB\Server\5.0\bin>mongo -version
+MongoDB shell version v5.0.8
+Build Info: {
+    "version": "5.0.8",
+    "gitVersion": "c87e1c23421bf79614baf500fda6622bd90f674e",
+    "modules": [],
+    "allocator": "tcmalloc",
+    "environment": {
+        "distmod": "windows",
+        "distarch": "x86_64",
+        "target_arch": "x86_64"
+    }
+}
+
+
+
+path setting: C:\Program Files\MongoDB\Server\5.0\bin
+   
+    set the path
+	
+	
+	
+command:   mongod 
+
+{"error":"NonExistentPath: Data directory C:\\data\\db\\ not found. Create the missing directory or specify another path using (1) the --dbpath command line option, or (2) by adding the 'storage.dbPath' option in the configuration file."}}
+
+***
+create one folder "data" in c drive
+   in data folder create anothe folder name with db 
+
+enter command: mongod    ==>server started 
+
+data stored c:data/db 
+
+
+
+
+open other cmd:   type mongo    it will open shell
+
+search for db.version()     => it will show version of the shell 
+
+
+
+
+to show any logical databases :
+ 
+===> show dbs 
+ 
+ > db.version()
+5.0.8
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+
+
+How many dtabases we have:
+-----
+Default databases:
+   mongodb admin will use these defalut dtabases.
+
+
+1.admin:
+=========
+admin database is used tp store user authenticationa nd autherization.
+information like USERNAMES,PASSWORDS, ROLES AND ETC,...
+
+  THIS DATABASE IS USED BY ADMINISTARTORS WHILE CREATING, DELETEING, updating,users and while assigngn roles.
+  
+  2. config:
+  ========
+  To store configuration information of mongodb server 
+  
+  3. local:
+  --------
+  
+ local dtabase can be used by admin ehile performning Replication.
+ 
+ 
+ Data Formats In MongoDB:
+ -----------------------
+ 
+ json: {name:'sathya'}---> Bson and that Bson will be stored 
+ 
+ Bson: binary json 
+ 
+ 1. In JAVASCRIPT ONLY 6 TYPES ARE AVAILABLE
+ 
+   String,Number,Object,Array,Boolean,Null
+   
+   But Bson provides extra types also like 
+     32-bit Integer--->NumberInt
+	 ObjectId
+	 Date
+	 etc
+	 
+	 
+	 
+	 2. Bson format requires less memory
+	 
+	 Json-->10kb
+	 Bson-->4 to 5kb
+	 
+Note: Effecient storage and extra dta types are speciality of Bson over json
+
+
+creation of database and collection:
+====================================
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	   

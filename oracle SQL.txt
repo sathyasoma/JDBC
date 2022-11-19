@@ -1,0 +1,429 @@
+sql:
+`
+  structured qurey language
+  
+  this is a standard for all the db
+
+  propertiery language for all the db's
+  
+  SQL stands for Structured Query Language · 
+  SQL lets you access and manipulate databases
+  
+  
+what is database?
+``
+A database is an organized collection of data, so that it can be 
+easily accessed and managed. 
+
+You can organize data into tables, rows and columns.
+
+
+what is database management system:
+```````
+Database Management System (DBMS) is a software for storing and 
+retrieving users' data while considering appropriate security measures.
+
+
+  XML
+  
+
+RDBMS:(RELATIONAL DATABASE MANAGEMENT SYSTEMS)
+```````
+Microsoft Access
+MYSQL
+Oracle
+Postgres
+Ingress
+Sybase
+Redhad
+DB2
+
+  etc...
+  
+  
+ORACLE:
+`
+11G 
+
+HOW CAN YOU DOWNLOAD THIS ORACLE:
+`````
+www.oracle.com
+
+link to download oracle 11g version 
+
+https://www.oracle.com/in/database/technologies/oracle-database-software-downloads.html
+
+
+ username:
+ password: 
+ 
+ signin
+ 
+ once you installed, how can i check 
+ 
+ 
+SQL> connect as sysdba
+Enter user-name: system/system
+
+
+Connected.
+ 
+cl scr: clear the screen
+
+
+in sql, we have some categories of commands are there
+
+  -ddl(data definition language) - create,alter,drop,rename,truncate
+  -dml(data manipulation language) - insert,update,delete,merge
+  -dcl(data control language) - grant,revoke(deal with previleges)
+  -tcl(transaction control language) - commit,rollback
+  -drl(data query/retrieval language) - select
+  
+  
+ ddl:
+ `
+ ddl is meant for creating the database objects like 
+ table creation
+ structure alteration
+ ....
+ 
+ to define the database object or to mange the database object
+ 
+ create:
+ 
+  create is the command to create any database object
+  
+ syntax:
+ 
+ create table <tablename>(colname <datatype>(size),colname <datatype>(size)...);
+ 
+ note: sql is case in sensitive
+ 
+ both are same:
+ ``
+ Select * from student
+ seLEct * from student;
+ 
+ ex:
+ 
+  create table employee(empid number(3),empname varchar2(20));
+  
+  
+ note:
+ 
+ to perform any db operations, first we need connection from db.
+ otherwise we will get error like below
+ 
+ SQL> create table employee(empid number(3),empname varchar2(20));
+      SP2-0640: Not connected
+  
+
+ after we got the connection to check table created or not?
+ 
+ sql> desc employee;(to see the structure of the table)
+ 
+ desc - > description
+
+ sql> select * from employee;
+ 
+ no rows selected
+ 
+ note: all the ddl commands are auto commited statements.
+ 
+ once you perform any ddl , those changes will be permanently saved into the
+ database.
+ 
+ drop:
+ `
+ to drop the database object
+   drop --> structure + data
+   
+   both will be removed.
+   
+   
+
+syntax: drop table <tablename>
+
+
+Table dropped.
+
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> desc employee;
+ERROR:
+ORA-04043: object employee does not exist
+
+rename:
+`
+rename is the command which we are using to rename existing database object
+to new database object.
+
+ syntax:
+    rename <oldtablename> to <newtablename>;
+
+ ex:	
+	rename employee to emp;
+	
+	table renamed.
+	
+	
+truncate:
+`
+TRUNCATE TABLE statement is used to remove all records from a table. 
+
+It works same as DELETE statement but without specifying a WHERE clause
+
+syntax:
+  truncate table <tablename>
+
+ex:
+  truncate table employee;
+
+  only data will be deleted permanently but table object remains exist.
+  
+  
+alter:
+`
+to alter the database object or to manage the databse object
+
+  it might me adding new columns
+  it might be changing the column datatype and sizes
+  it might be renaming the colomns
+  
+  it might be deleting the collumns.
+  
+  
+ on top of the exisitng databse object, if we want to perform any this
+ kind of operations, we should go for alter.
+ 
+ 
+add the column using alter:
+ 
+syntax:
+
+  alter <table> <tablename> add <colname> <datatype>(size);
+  
+ex:
+  alter table employee add empsal number(8,2);
+
+  table altered
+
+how can you rename the coloumn at alter level:
+
+
+syntax:
+
+  alter table <tablename> rename column <oldcolumname> to <newcolname>;
+
+ex: 
+  alter table employee rename column empsal to empsalary;
+  table altered.
+  
+  
+ how can we drop the column at alter level:
+ ```````
+ 
+ syntax:
+ 
+ ALTER TABLE table_name DROP COLUMN column_name;
+ 
+ eg: 
+ alter table employee drop column empsal;
+ 
+how can you modify the column datatype:
+```````
+
+alter table <tablename> modify columnname <newdatatype>(size)
+
+ex:
+`
+alter table employee modify empsalary number(6,2);
+
+
+how to create the user:
+
+  first get the conection from the sysdba
+  
+  conn as sysdba
+    username system/system
+	
+  sql:/> crete user <username> identfied by <password>;
+  
+  ex: sql:/> create user capg identified by capg;
+  
+  user created
+  
+  after you create the user, again conect to sysdba user
+  
+  conn as sysdba
+    username: system/system
+	
+  sql:/> grant connect,resource to capg;
+  
+  sql:/> conn 
+  username:capg/capg
+  connected
+dml:
+`
+data manipulation language
+
+ insert
+ update
+ delete
+ 
+using these commands we are able to perfrom following operations
+  
+   -insert the data
+   -update the data
+   -delete the data
+   
+ insert:
+```
+ syntax:
+ 
+  insert into <tableaname> values(value1,value2....value n);
+  
+  eg:
+ 
+  insert into student values(100,'ram');
+  
+ 
+error:
+``
+SQL> insert into student values('ram',100);
+insert into student values('ram',100)
+                           *
+ERROR at line 1:
+ORA-01722: invalid number
+   
+syntax of insert:
+``
+insert into <tablename>(colname1,colname2> values(value1,value2...)
+  
+  ex:
+
+insert into student(stname) values('capg');
+  
+ 
+syntax:
+``
+
+ insert into student values(&colname1,&colname2... ) 
+ 
+ eg:
+ `
+SQL> insert into student values(&stid,&stname);
+Enter value for stid: 101
+Enter value for stname: 'capg'
+old   1: insert into student values(&stid,&stname)
+new   1: insert into student values(101,'capg')
+
+1 row created.
+
+SQL> /
+Enter value for stid: 102
+Enter value for stname: 'kokata'
+old   1: insert into student values(&stid,&stname)
+new   1: insert into student values(102,'kokata')
+
+1 row created.
+
+SQL> /
+Enter value for stid: 103
+Enter value for stname: 'hyd'
+old   1: insert into student values(&stid,&stname)
+new   1: insert into student values(103,'hyd')
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * From student;
+
+      STID STNAME
+---------- --------------------
+       100 ram
+           capg
+       101 capg
+       102 kokata
+       103 hyd
+
+
+how to insert using select:
+``````
+syntax:
+
+ insert into <newtablename> select * From <existingtablename>;
+
+
+make sure: columns should be same count and as well as we should maintain
+same datatype(s).
+
+eg:
+
+  insert into emp select * From student;
+  
+  3 rows inserted
+  
+  
+update:
+`
+using update we can update the existing data based on condition or without
+condition depends on the requirement.
+
+
+syntax:
+  
+   update tablename set <colname> = <new value> [where condition];
+   
+ eg:
+   update student set stname='kolkata' where stid=102;
+   
+   1 row updated.
+   
+   if you didn't specify where condition , that udpate applicable for 
+   all the exisitng row(s).
+   
+   
+ update more than 1 column:
+ ````
+ 
+ syntax:
+ `
+ 
+  update <tablename> set colname1=value1,colname2=value2...
+  
+  update student set stid=104,stname='hyd' where stid=100;
+  1 row updated.
+  
+  
+  
+delete:
+`
+using this command we are allowed to delete the row(s) using condition
+or without condition.
+
+
+syntax:
+  delete from <tablename> [where condition]
+  
+eg:
+  delete from student where stid=104;
+  
+  
+   
+all these commands are belongs to dml commands, by default dml commands
+are not autocommited.
+
+if we want to commit permanently we have to pass the explicit command
+as 'commit'.
+
+if we want to rollback then we can pass explicit command as 'rollback'.
+
+for merge command follow the below link:
+```````
+https://www.oracletutorial.com/oracle-basics/oracle-merge/

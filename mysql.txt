@@ -1,0 +1,21 @@
+
+mysql shell:
+------------
+
+1. \sql
+
+
+2.\connect sathya@localhost
+
+provide password:
+
+ 3.-->Please provide the password for 'sathya@localhost': **********
+ 
+ 4. show databases;
+ 
+ 5. create database databasename;
+ 
+ 6.use databasename;
+ 
+ 
+ 

@@ -1,0 +1,378 @@
+
+document notes link:   https://www.postgresql.org/docs/11/   
+
+create database:
+==================
+To see predefined commands
+
+\?
+
+
+create database databaseName
+
+   create database sathya;
+   
+To COnnect with database 
+     \c sathya
+	 
+To clear the screen:
+   \! cls
+
+To find list of the databases
+
+  \l
+
+list of all tables in current database
+   \dt    or \d
+   
+create:
+-------
+
+create table tablename(name datatype,name datatype);
+    create table emp1(eid int,ename varchar(10));
+
+To describe the table
+  \d tablename;
+  
+To see the table structure:
+         select * from emp1;
+		 
+		 
+ALTER:
+=====
+add:
+====
+alter table tablename add column columnaname datatype;
+      alter table emp1 add column esal int;
+
+rename:
+-----
+ alter table tablename rename oldname to newname;
+      alter table emp1 rename esal to esalary;
+	  
+modify:(change datatype)
+-------
+  alter table tablename alter column columnaname type datatype;
+       
+	
+
+
+sathya=# insert into emp1 values(1,'sp',10,'sathya');
+INSERT 0 1
+sathya=# insert into emp1 values(1,'sp',10,'sathya');
+INSERT 0 1
+sathya=# begin;
+BEGIN
+sathya=# delete from emp1;
+DELETE 2
+sathya=# rollback;
+ROLLBACK
+sathya=# select * from emp1;
+ eid | ename | esalary | email
+-----+-------+---------+--------
+   1 | sp    |      10 | sathya
+   1 | sp    |      10 | sathya
+(2 rows)
+	
+rename table name:
+-----------------
+alter table oldtablename RENAME TO newTbale nAME;
+	   
+	   
+	   
+constraints:
+============
+constraints rule or restriction on table data
+
+
+not null:
+=========
+*‘NOT NULL’ constraints are used to avoid null values for a specific column.
+* We can add ‘NOT NULL’ constraint at column level only.
+* Columns without the ‘NOT NULL’ constraint allow NULL values. 
+(i.e. if no value is specified then 
+NULL is the default) .
+
+Check:
+=======
+Check constraintis used to insert the values based on specified condition. The Check 
+constraint explicitly defines a condition that each row must satisfy.
+
+
+We can add this constraint in all three levels.
+ Column level
+ Table level
+ Alter level
+
+
+
+Unique:
+========
+Unique constraint is used to avoid duplicates values in the column data but it allows null values.
+We use unique constraint to ensure that our table column has unique information.
+We can add this constraint in all three level
+
+
+primary key:
+-----------
+Primary Key is used to avoid duplicates and nulls. This constraint will work as a combination of 
+both unique and not null.
+ Only one primary key is allowed to a table.
+ For parent child relationships across tables, Primary key is always attached to the parent table.
+ If we want more than one column to work as Primary Key columns then those are called 
+composite primary key.
+ Note that we can take a maximum of 32 columns in composite primary key and these 
+composite primary key can be declared only at Table level.
+ We can add this constraint in all three level
+
+
+
+Foriegn key:
+=============
+Foreign keys are used to refer the parent table primary key column which does not allow 
+duplicates.
+ The Foreign key constraint provides referential integrity rules (either within a table or between 
+tables).
+i.e. We can only place a value in TABLE B if the values exist as a primary key in TABLE A.
+ For parent child relationships across tables, foreign key is always attached to the child table.
+ We use foreign key if we want to ensure that for every child table record there is a reference in 
+parent table.
+ We can add this constraint in all three levels.
+
+
+
+To demonstrate foreign key constraint we need parent child relationship between the tables.
+Let’s first create the parent/master table (i.e DEPT table) and make deptno column as primary 
+key column.
+
+
+
+
+without name:
+=============
+sathya=# create table emp2(eid int not null,ename varchar(10) unique);
+CREATE TABLE
+
+with name:
+-------
+sathya=# create table emp3(eid int constraint emp_null not null,ename varchar(10));
+CREATE TABLE
+
+
+unique:
+======
+table level:
+============
+
+sathya=# create table emp4(eid int,ename varchar(10),unique(ename));
+CREATE TABLE
+
+
+
+
+check:
+-------
+table level:
+========
+sathya=# create table emp5(eid int,ename varchar(10),esal int, check(esal<1000));
+CREATE TABLE
+
+alter level:
+============
+sathya=# alter table emp5 add constraint emp_unq unique(ename);
+ALTER TABLE
+
+
+
+
+joins:
+=====
+
+A Join is nothing but a temporary relation between the common columns of the table (or) the 
+column sharing the common data.
+ Join is a mechanism to retrieve data from more than one data base tables.
+ The purpose of a join is to combine the data across tables.
+ A join is actually performed by the where clause which combines the specified rows of tables.
+ JOINS are always defined only between two tables.
+ When we read the data from more than one table join is mandatory.
+ The default join working in the background is called CROSS JOIN.
+ If ‘N’ tables are there then at least (N-1) joins are needed.
+ A join is a set operation applicable only to RDBMS.
+ REFERENCES are a constraint used to define the relationship between the columns of different 
+tables but it is a constraint validates the data only during the DML operation.
+ Joins are defined at the application level, because of which they are temporary.
+ Retrieving the data from more than one table without a join leads to Cartesian product i.e.,. All 
+possible combination of rows.
+ Join is a condition to get only the relevant matching rows of different tables.
+
+
+
+:1:
+select ename,job,sal,deptno from emp;
+
+invalid data combined:cross join 
+=================
+select e.ename,e.job,e.sal,e.deptno,d.dname from emp e,dept d;
+
+
+equi:
+=====
+ select e.ename,e.job,e.sal,e.deptno,d.dname,d.loc from emp e,dept d where e.deptno=d.deptno;
+ 
+ 
+ left outr:
+ =========
+ select e.ename,e.job,e.sal,e.deptno,d.dname,d.loc from emp e left outer join dept d on e.deptno=d.deptno;
+
+right:
+======
+ select e.ename,e.job,e.sal,e.deptno,d.dname,d.loc from emp e right outer join dept d on e.deptno=d.deptno;
+ 
+full outer:
+----------
+select e.ename,e.job,e.sal,e.deptno,d.dname,d.loc from emp e full outer join dept d on e.deptno=d.deptno; 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+not null:
+-----------
+without name:
+------------
+testing=# create table emp1(eid int not null,ename varchar(10));
+CREATE TABLE
+
+
+with name:
+-----------
+testing=# create table emp2(eid int constraint emp_nk not null,ename varchar(10));
+CREATE TABLE
+
+
+
+check:
+---------
+
+without name coulmn level:
+----------------------------
+testing=# create table emp3(eid int,ename varchar(10),esal int check(esal<1000));
+CREATE TABLE
+
+with name coulmn level:
+-----------------------
+testing=# create table emp4(eid int,ename varchar(10),esal int constraint emp_ck check(esal<1000));
+CREATE TABLE
+
+without name table level:
+--------------------------
+testing=# create table emp5(eid int,ename varchar(10),esal int, check(esal<1000));
+CREATE TABLE
+
+withname table level:
+-------------------
+testing=# create table emp6(eid int,ename varchar(10),esal int constraint emp_ck check(esal<1000));
+CREATE TABLE
+
+
+Alterlevl withname:
+-:==============
+testing=# alter table emp6 add constraint emp_un unique(ename);
+ALTER TABLE
+
+
+
+Unique Constrait:
+------------------
+Column level:
+-----------
+without name/:
+------------
+
+testing=# create table emp7(eid int,ename varchar(10) unique,esal int);
+CREATE TABLE
+
+with name:
+---------
+testing=# create table emp8(eid int,ename varchar(10) constraint emp_unq unique,esal int);
+CREATE TABLE
+
+
+Table level:
+-------------
+   without name:
+   ---------
+testing=# create table emp9(eid int,ename varchar(10),esal int,unique(ename));
+CREATE TABLE
+
+ with name:
+ ---------
+ testing=# create table emp10(eid int,ename varchar(10),esal int,constraint uniq_uk unique(ename));
+CREATE TABLE
+
+
+Alter level:
+-----------
+
+testing=# alter table emp10 add constraint emp_eni unique(ename);
+ALTER TABLE
+
+
+Primary key:
+---------------------------
+
+ without name:
+ ----------------
+ testing=# create table emp11(eid int primary key,ename varchar(10),esal int);
+CREATE TABLE
+
+with name:
+----------
+testing=# create table emp12(eid int constraint emp_pk primary key,ename varchar(10),esal int);
+CREATE TABLE
+
+
+Table level:
+------------
+  withoutname:
+  ----------
+  
+  testing=# create table emp13(eid int,ename varchar(10),esal int, primary key(eid));
+CREATE TABLE
+
+with name:
+-----------
+testing=# create table emp14(eid int,ename varchar(10),esal int,constraint emp_pkl primary key(eid));
+CREATE TABLE
+
+alter levl:
+--------
+testing=# alter table emp14 add constraint uni_emp unique(ename);
+ALTER TABLE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

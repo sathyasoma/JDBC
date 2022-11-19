@@ -1,0 +1,88 @@
+sql database connection:
+========================
+1. conn /as sysdba;
+
+2. create user username(sathya) identified by password(sathya123);
+
+3. grant connect, resource to username(sathya);
+
+4. show user;
+
+
+DDL: DATA DEFINITION LANGUAGE=>
+=============================
+
+CREATE TABLE: if we want create a table we give definitions to the columns and respective datatypes to the column names
+============
+SYNTAX:=>  CREATE TABLE TABLE NAME(COLOUMN1 DATA TYPE, COLOUMN2 DATA TYPE,COLOUMN3 DATA TYPE);
+
+eg:       create table emp(eid number(5),ename varchar(10),eadd vatchar2(10));
+
+ALTER TABLE:-> Alter command is part of ddl command. it is used to define to change the columns of the table.
+============
+In the alter command we have ADD, DROP, MODIFY,RENAME.TRUNCATE
+
+ALTER ADD: Add command is usedd to add the definitions(colomns) in the existing table.
+---------
+
+SYNTAX: ALTER TABLE TABLE NAME ADD COLOUMN NAME DATA TYPE;
+
+EG:  alter table emp enum number(10);
+
+ALTER DROP: Drop command is used to drop a table.
+----------
+SYNTAX;   DROP TABLE TABLE NAME;
+
+EG: drop table emp;
+
+TRUNCATE: truncate commnd is used to delete the data from the data base completely.
+--------
+SYNTAX: TRUNCATE TABLE TABLE NAME;
+
+EG:  truncate table emp;
+
+ALTER DROP: by using this command we can drop column from the table.
+----------
+
+SYNTAX: ALTER TABLE TABLE NAME DROP COLUMN COLUMN NAME;
+
+EG:     alter table emp drop column esal;
+
+ALTER MODIFY:This command is used to change the data type of which coumn we change.
+------------
+
+SYNTAX:  ALTER TABLE TABLE NAME MODIFY COLUMN NAME DATA TYPE;
+
+EG:   alter table emp modify esal data type(5); 
+
+ALTER RENAME:This command is used to rename the exist column name of the existing table.
+
+SYNTAX: ALTER TABLE TABLE NAME RENAME COLUMN OLD COLUMN TO NEW COLUMN;
+
+EG;  Alter table emp rename column esal to esalary;
+
+DROP: Drop command is used to drop the table from the database at the same time all the fields,indexes,data will be dropped permnently.
+once we drop the table it will not be rollback.
+
+SYNTAX: DROP TABLE TABLE NAME;
+
+DML: DATA MANIPULATION LANGUAGE:
+-------------------------------
+  DML is used where we can update and insert or modify the values in the table or database.
+
+
+INSERT: Insert command is used to insert the data into an existing table if we want insert the data in the table alredy must the 
+table in the database.
+
+SYNTAX: INSERT INTO TABLE NAME VALUES(V1,V2,V3);
+
+EG: insert into emp values(123,'sathya','hydrabad');
+
+* if we want to insert specific data in the column we must use this syntax.
+
+SYNTAX: INSERT INTO TABLE NAME(CLM1,CLM2) VALUES(V1,V2);
+
+EG:Insert into emp(eadd) values('hyderabad');
+
+
+
